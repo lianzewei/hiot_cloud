@@ -1,22 +1,29 @@
 package com.example.hiot_cloud.test.mvptest;
 
+import com.example.hiot_cloud.base.BasePresenter;
+import com.example.hiot_cloud.test.mvptest.dagger2test.ThirdObj;
 import com.example.hiot_cloud.test.mvptest.model.User;
 
-public class TestPresenter {
+import javax.inject.Inject;
 
-    private TestView view;
+public class TestPresenter extends BasePresenter<TestView>{
 
-    public TestPresenter(TestView view) {
-        this.view = view;
+    @Inject
+    ThirdObj thirdObj;
+
+    @Inject
+    public TestPresenter(){
+
     }
+
     public void login(User user){
+        thirdObj.thirdAction();
         if ("lisi".equals(user.getUserName()) && "123".equals(user.getPassword())){
-            view.showMessage("登录成功");
+            getView().showMessage("登录成功");
         }else {
-            view.showMessage("登录失败");
+            getView().showMessage("登录失败");
         }
 
     }
-
 }
 
